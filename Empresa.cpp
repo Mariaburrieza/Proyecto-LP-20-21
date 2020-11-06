@@ -1,26 +1,28 @@
 #include "Empresa.h"
 
 
-Magatzem& Empresa::getMagatzem() {}
+//Magatzem& Empresa::getMagatzem() {}
 
 
 vector<Botiga*>& Empresa::getBotigues() {}
 
 
-void Empresa::setProveidor(Proveidor& proveidor) { 
-	int codi = proceidor.getCodiProveidor();
-	m_proveidor(codi);
-}
-
-
-Proveidor& Empresa::getProveidor() {} 
+//Proveidor& Empresa::getProveidor() {} 
 
 void Empresa::afegeixBotiga(Botiga* b) {}
 
-static int Empresa::getSeguentCodiRus() {}
 
 
-string static Empresa::generaCodiRus(const string& model) {}
 
-bool Empresa::realitzaComanda(Comanda& c, Proveidor& p) {}
+
+
+
+//La empresa realiza una comanda. Se retorna true si la comanda esta completa. 
+//Esta función llamará a procesaComanda de la clase Proveidor para que complete la comanda solicitada
+bool Empresa::realitzaComanda(Comanda& c, Proveidor& p) {
+	Empresa l;
+	bool completa = false;
+	completa = p.procesaComanda(c, l.getMagatzem());
+	return completa;
+}
 

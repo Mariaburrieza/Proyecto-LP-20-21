@@ -13,26 +13,32 @@
 * 
 **/
 
-class Magatzem
-{
-public:
-	Magatzem();
-	Magatzem(string nom, string codi);
-	void enmagatzemarComanda(vector<Bicicleta*>& paquet, Data dataEntrada);
-	float procesQA(Comanda& c, vector<Bicicleta*>& paquet, Data dataActual);
-	bool rebreComanda(Comanda& c, vector<Bicicleta*>& paquet, Data dataRecepcioPaquet);
-	void generaFactura(bool paquetComplet, float costCorregit, Comanda& c);
-	Bicicleta* agafaBicicletaAntiga(const string& model);
-	void mostraCataleg();
+class Magatzem {
+	public:
+		Magatzem();
+		Magatzem(string nom, string codi): m_nom(nom), m_codi(codi) {}
+		Magatzem(const Magatzem& m);
+		~Magatzem();
 
-	string getNom() const {return m_nom;}
-	string getCodi() const {return m_codi;}
-	void setNom(string nom) {m_nom = nom;}
-	void setCodi(string codi) {m_codi = codi;}
-	map<string, priority_queue<Bicicleta*>> getStock() const; //implementado
-	
-private:
-	string m_nom;
-	string m_codi;
-	map<string, priority_queue<Bicicleta*>> m_stock;
+		//Sobrecargar operador para poder igualar dos objetos magatzem
+		Magatzem& operator=(const Magatzem& m); 
+
+		void enmagatzemarComanda(vector<Bicicleta*>& paquet, Data dataEntrada);
+		float procesQA(Comanda& c, vector<Bicicleta*>& paquet, Data dataActual);
+		bool rebreComanda(Comanda& c, vector<Bicicleta*>& paquet, Data dataRecepcioPaquet);
+		void generaFactura(bool paquetComplet, float costCorregit, Comanda& c);
+		Bicicleta* agafaBicicletaAntiga(const string& model); //implementado
+		void mostraCataleg();
+
+		string getNom() const {return m_nom;}
+		string getCodi() const {return m_codi;}
+		void setNom(string nom) {m_nom = nom;}
+		void setCodi(string codi) {m_codi = codi;}
+		
+		map<string, priority_queue<Bicicleta*>> getStock() const { return m_stock; }
+		
+	private:
+		string m_nom;
+		string m_codi;
+		map<string, priority_queue<Bicicleta*>> m_stock; //prioridad bici
 };

@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 #include "Bicicleta.h"
 #include "Data.h"
 
@@ -19,15 +18,21 @@ struct lineaComanda{
 **/
 class Comanda {
 	public:
+		Comanda() {}
 		Comanda(const Data& dataComanda, vector<lineaComanda>& comanda); //implementado
+		Comanda(const Comanda& c);
 		~Comanda() {}
-		int getTotalBicicletes() const; //implementado
-		Data getDataEntregaPrevista() const; //imp
-		float getCostTotal() const;
-		vector<lineaComanda> getLlistaComanda() const; //imp
 
+		int getTotalBicicletes() const { return m_numBicicletes; }
+		Data getDataEntregaPrevista() const { return m_dataComanda; }
+		float getCostTotal() const; //implementar en cpp
+		vector<lineaComanda> getLlistaComanda() const { return m_comanda; }
+
+		void sumTotalBicicletes(); //Función para sumar el total de bicis de la comanda
 	private:
-		list<lineaComanda> m_comanda;
+		int m_numBicicletes;
+		float m_costComanda;
+		vector<lineaComanda> m_comanda;
 		Data m_dataComanda; //data en la que es genera la comanda.
 };
 

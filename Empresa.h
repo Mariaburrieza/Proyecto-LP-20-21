@@ -15,18 +15,21 @@
 **/
 
 class Empresa {
+	
 	public:
+		Empresa() {}
 		Empresa(string name, int numBotigues, Magatzem& magatzemPrincipal, Proveidor& p): m_name(name), m_numBotigues(numBotigues), m_magatzemPrincipal(magatzemPrincipal) {}
+		Empresa(const Empresa& e) { m_name = e.m_name; m_numBotigues = e.m_numBotigues; m_magatzemPrincipal = e.m_magatzemPrincipal; m_proveidor = e.m_proveidor; } //implementar en magatzem el operador =
 		string getName() const { return m_name; }
-		Magatzem& getMagatzem(); //
-		vector<Botiga*>& getBotigues(); //
-		void setProveidor(Proveidor& proveidor);
-		Proveidor& getProveidor();
+		Magatzem& getMagatzem() { return m_magatzemPrincipal; } 
+		vector<Botiga*>& getBotigues(); 
+		void setProveidor(Proveidor& proveidor) { m_proveidor = proveidor; } //en Proveidor sobrecargar el  operador =
+		Proveidor& getProveidor() { return m_proveidor; } //mirar si se puede devolver un objeto entero
 		void afegeixBotiga(Botiga* b);
 		static int getSeguentCodiRus();
 
-		bool realitzaComanda(Comanda& c, Proveidor& p);
-		string static generaCodiRus(const string& model);
+		bool realitzaComanda(Comanda& c, Proveidor& p); //ya implementada
+		static string generaCodiRus(const string& model);
 
 	private:
 		string m_name;

@@ -15,6 +15,7 @@ class Proveidor
 public:
 	Proveidor() {}
 	Proveidor(const int& codiProveidor) {m_codiProveidor = codiProveidor; }
+	Proveidor(const Proveidor& p) { m_codiProveidor = p.m_codiProveidor; }
 	~Proveidor() {}
 	Data generaDataEnviament(Data dataprevista, int diesmaxim);
 	bool procesaComanda(Comanda c, Magatzem& m);

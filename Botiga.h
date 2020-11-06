@@ -12,7 +12,12 @@
 
 class Botiga {
 	public:
+		Botiga() {}
 		Botiga(string nom, string codi): m_nom(nom), m_codi(codi) {}
+		Botiga(const Botiga& b);
+		Botiga& operator=(const Botiga& b);
+		~Botiga();
+		
 		bool solicitaComanda(const Comanda& c, Magatzem& m);
 		map<string, priority_queue<Bicicleta*>> getStockBotiga() const;
 		void mostraCataleg();

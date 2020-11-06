@@ -26,7 +26,8 @@ class BicicletaMTB: public Bicicleta {
 		BicicletaMTB() {}
 		BicicletaMTB(const string& model, string descripcio, const int& temporada, const Talla& talla, const Quadre& quadre, const Roda& roda, const Fre& fre, TipusBicicleta tipus, Categoria categoria, Modalitat modalitat, bool electrica):
 			Bicicleta(model,descripcio,temporada,talla,quadre,roda,fre,tipus), m_categoria(categoria), m_modalitat(modalitat), m_electrica(electrica) {}
-		BicicletaMTB(const BicicletaMTB& bm): Bicicleta(bm) { m_categoria = categoria; m_modalitat = modalitat; m_electrica = electrica; }
+		BicicletaMTB(const BicicletaMTB& bm): Bicicleta(bm) { m_categoria = bm.m_categoria; m_modalitat = bm.m_modalitat; m_electrica = bm.m_electrica; }
+		BicicletaMTB* clone() { return new BicicletaMTB(*this); }
 		~BicicletaMTB() override;
 		
 		void setCategoria(const Categoria& categoria);

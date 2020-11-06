@@ -2,25 +2,17 @@
 
 Comanda::Comanda(const Data& dataComanda, vector<lineaComanda>& comanda) {
     m_dataComanda = dataComanda;
-    for (list<lineaComanda>::const_iterator it = m_comanda.begin(); it != m_comanda.end(); it++) {
-        it->m_comanda.tipus = it->comanda.tipus;
-        it->m_comanda.m_quantitat = it->comanda.m_quantitat;
-        it->m_comanda.m_model = it->comanda.m_model;
+    for(int i = 0; i < m_comanda.size(); i++){
+        m_comanda[i].tipus = comanda[i].tipus;
+        m_comanda[i].m_quantitat = comanda[i].m_quantitat;
+        m_comanda[i].m_model = comanda[i].m_model;
     }
 }
 
-int Comanda::getTotalBicicletes() const {
-    int total = 0;
-    for (list<lineaComanda>::const_iterator it = m_comanda.begin(); it != m_comanda.end(); it++) {
-        total += it->m_comanda.m_quantitat;
-    }
-    return total;
+void Comanda::sumTotalBicicletes() {
+    m_numBicicletes = 0;
+    for(int i = 0; i < m_comanda.size(); i++) m_numBicicletes += m_comanda[i].m_quantitat;
 }
+  
 
-vector<lineaComanda> Comanda::getLlistaComanda() const {
-    return m_comanda;
-}
-
-Data Comanda::getDataEntregaPrevista() const { //getDataComanda
-    return m_dataComanda;
-}
+float Comanda::getCostTotal() const {}
